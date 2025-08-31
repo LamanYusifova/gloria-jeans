@@ -1,11 +1,11 @@
 import  { useEffect, useState } from 'react'
 import VideoSwiper from './VideoSwiper'
 import Card from './Card'
-import ImgSwiper from './imgSwiper'
 import ProductCard from '../Header/ProductCard'
 import Newsletter from './Newsletter'
 import SubCard from './SubCard'
 import { getAllProducts } from '../../services'
+import ImgSwiper from './imgSwiper'
 
 function Main() {
   const cardImage = [
