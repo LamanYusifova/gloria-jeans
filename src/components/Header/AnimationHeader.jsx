@@ -10,7 +10,7 @@ function AnimationHeader() {
     }
   }, [paused]);
 
-  const text = 'Школьные образы от 599 рублей';
+  const text = 'School looks from 599 rubles';
 
   return (
     <div
