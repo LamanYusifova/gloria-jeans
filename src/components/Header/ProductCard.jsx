@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules'
 import { FaRegHeart } from 'react-icons/fa6'
-import { getData, getProdForDetails } from '../../services';
+import { getData } from '../../services';
 import { Link, useParams } from 'react-router-dom';
 
 function ProductCard({ data }) {
@@ -23,13 +23,13 @@ function ProductCard({ data }) {
     })
   }, [])
 
-  useEffect(() => {
-    if (id) {
-      getProdForDetails(id).then(res => {
-        setSubCategory(res)
-      })
-    }
-  }, [id])
+  // useEffect(() => {
+  //   if (id) {
+  //     getProdForDetails(id).then(res => {
+  //       setSubCategory(res)
+  //     })
+  //   }
+  // }, [id])
 
   useEffect(() => {
     categories.forEach(item => {
