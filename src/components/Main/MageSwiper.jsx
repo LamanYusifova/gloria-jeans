@@ -5,7 +5,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-function ImgSwiper({mobileData, desktopData}) {
+function MageSwiper({mobileData, desktopData}) {
     const swiperRef = useRef(null);
     const videoRef = useRef(null);
 
@@ -40,4 +40,4 @@ function ImgSwiper({mobileData, desktopData}) {
     );
 }
 
-export default ImgSwiper;
+export default MageSwiper;

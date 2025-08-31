@@ -5,7 +5,7 @@ import ProductCard from '../Header/ProductCard'
 import Newsletter from './Newsletter'
 import SubCard from './SubCard'
 import { getAllProducts } from '../../services'
-import ImgSwiper from './imgSwiper'
+import MageSwiper from './MageSwiper'
 
 function Main() {
   const cardImage = [
@@ -60,13 +60,13 @@ function Main() {
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-10">
       <Card cardImage={cardImage.slice(0, 4)}  />
     </div>
-      <ImgSwiper mobileData={mobileData.slice(0, 4)} desktopData={desktopData.slice(0, 4)} />
+      <MageSwiper mobileData={mobileData.slice(0, 4)} desktopData={desktopData.slice(0, 4)} />
       <p className='text-center pt-20 text-[26px]'>Women</p>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-10">
       <SubCard cardImage={cardImage.slice(4, 8)} />
     </div>
 
-      <ImgSwiper mobileData={mobileData.slice(4, 9)} desktopData={desktopData.slice(4, 9)} />
+      <MageSwiper mobileData={mobileData.slice(4, 9)} desktopData={desktopData.slice(4, 9)} />
       <p className='text-center pt-20 text-[26px]'>Kids</p>
       <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-10'>
 
