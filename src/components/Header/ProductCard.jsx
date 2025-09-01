@@ -51,7 +51,7 @@ function ProductCard({ data }) {
     }
   }, [swiper])
 
-  if (!data) return null; // data yoxdursa heç nə göstərmə
+  if (!data) return null;
 
   return (
     <div className='flex flex-col gap-3 w-full mx-auto justify-around'>

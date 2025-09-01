@@ -26,9 +26,9 @@ async function getProdForCategory(id) {
     return res.data;
 }
 
-// async function getProdForDetails(id) {
-//     const res = await instance.get(`/products/get/${id}`);
-//     return res.data;
-// }
+async function getProdForDetails(id) {
+    const res = await instance.get(`/products/get/${id}`);
+    return res.data;
+}
 
-export { getData, getAllProducts, getSubcategoriesById, getProdBySubCatId, getProdForCategory }
+export { getData, getAllProducts, getSubcategoriesById, getProdBySubCatId, getProdForCategory, getProdForDetails }
