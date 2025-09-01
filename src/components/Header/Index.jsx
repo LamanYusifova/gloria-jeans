@@ -12,7 +12,6 @@ import { MdHome } from "react-icons/md"
 import { RiMenuSearchLine } from "react-icons/ri"
 import { FiUser } from "react-icons/fi"
 import { getData } from "../../services"
-import logo from "../../../public/img/gloria_jeans_logo-removebg-preview.png"
 
 function Header() {
   const [data, setData] = useState([])
@@ -115,7 +114,7 @@ function Header() {
             {/* Logo */}
             <div>
               <Link to={"/"} className={`${isProductPage || bg ? "bg-black top-0" : 'bg-transparent max-xl:top-0'} flex items-center absolute left-0 ml-3 h-full max-xl:w-[80px]`}>
-                <img className={`${isProductPage || bg ? "w-[80px]" : 'w-[230px]'}`} src={logo} alt="logo" />
+                <img className={`${isProductPage || bg ? "w-[80px]" : 'w-[230px]'}`} src="/public/img/gloria_jeans_logo-removebg-preview.png" alt="logo" />
               </Link>
             </div>
 
