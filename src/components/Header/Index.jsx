@@ -106,6 +106,8 @@ function Header() {
     { name: 'Fransa', phone: '+33 6 12 34 56 78' },
   ]
 
+  const path = import.meta.env.BASE_URL + 'img'
+
   return (
     <>
       <header className="absolute top-[40px] left-0 w-full z-500">
@@ -114,7 +116,7 @@ function Header() {
             {/* Logo */}
             <div>
               <Link to={"/"} className={`${isProductPage || bg ? "bg-black top-0" : 'bg-transparent max-xl:top-0'} flex items-center absolute left-0 ml-3 h-full max-xl:w-[80px]`}>
-                <img className={`${isProductPage || bg ? "w-[80px]" : 'w-[230px]'}`} src="/public/img/gloria_jeans_logo-removebg-preview.png" alt="logo" />
+                <img className={`${isProductPage || bg ? "w-[80px]" : 'w-[230px]'}`} src={path +  `/gloria_jeans_logo-removebg-preview.png`}alt="logo" />
               </Link>
             </div>
 
