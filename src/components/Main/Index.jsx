@@ -9,10 +9,10 @@ import MageSwiper from './MageSwiper'
 
 function Main() {
   const cardImage = [
-    {id:1, categoryId: 1, name: "Women", img: "https://storage-cdn11.gloria-jeans.ru/cms/banners/d4/4a/2_desk_06Us8tlVuR8rzbRy2itN.webp", title: "Comfortable models in office-core aesthetics for business days" },
-    {id:2, categoryId: 8, name: "Men", img: "https://storage-cdn11.gloria-jeans.ru/cms/banners/fd/f8/4_desk_BlJMTVJ35uyMCFLkRwvq.webp", title: "Shirts, trousers, jumpers and other smart casual styles" },
+    {id:1, categoryId: 1, name: "Women", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty1705/prod/QC_ENRICHMENT/20250703/09/7e3dd4cb-0ce5-3698-8f71-140b547ab4fb/1_org_zoom.jpg", title: "Comfortable models in office-core aesthetics for business days" },
+    {id:2, categoryId: 8, name: "Men", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty1671/prod/QC/20250505/22/6310dcfa-a0c5-364f-b8a0-33778a85f085/1_org_zoom.jpg", title: "Shirts, trousers, jumpers and other smart casual styles" },
     {id:3, categoryId: 9, name: "Kids", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty459/product/media/images/20220622/16/128893398/496628668/2/2_org_zoom.jpg", title: "College Style Models for School and Everyday Looks" },
-    {id:4, categoryId: 7, name: "Jewellery", img: "https://storage-cdn11.gloria-jeans.ru/cms/banners/f4/44/3_desk_4m56pC8zuoqPWFnTAUVP.webp", title: "New items for kindergarten and preschool classes" },
+    {id:4, categoryId: 7, name: "Jewellery", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty1728/prod/QC_ENRICHMENT/20250821/11/2e1c2a43-9472-39b5-b801-64a047f09ce9/1_org_zoom.jpg", title: "New items for kindergarten and preschool classes" },
     {id:5, categoryId: 2, name: "Clothing", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty1679/prod/QC/20250515/11/44523034-74e3-3eec-bff5-bd4c7f560038/1_org_zoom.jpg", title: "Short and long sleeves in a basic palette" },
     {id:6, categoryId: 3, name: "Shoes", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty1724/prod/QC_ENRICHMENT/20250812/17/3bf5d8c9-ad73-3dd3-98d8-c7185127a2b7/1_org_zoom.jpg", title: "Checkered, with contrasting collars and decorative slits" },
     {id:7, categoryId: 4, name: "Bags", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty1723/prod/QC_ENRICHMENT/20250812/21/97ba6128-23b8-3ba5-bc10-d74a3e6bf0bf/1_org_zoom.jpg", title: "With voluminous sleeves, oversized, with ties and ruffles" },
@@ -20,7 +20,7 @@ function Main() {
     {id:9, categoryId: 11, name: "Nursery & baby", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty1717/prod/QC_ENRICHMENT/20250730/11/f161dc5e-b933-3c0a-b566-8f294ce730e7/1_org_zoom.jpg", title: "Corduroy, pleated, checkered and skorts" },
     {id:10, categoryId: 13, name: "Baby boys (0-3 years)", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty1718/prod/QC_ENRICHMENT/20250731/13/b6b258fb-cb6c-3fdc-8845-d8ee72ba2039/1_org_zoom.jpg", title: "Comfortable models for long walks and active games" },
     {id:11, categoryId: 12, name: "Baby Girls (0-3 years)", img: "https://cdn.dsmcdn.com/mnresize/620/920/ty1716/prod/QC_ENRICHMENT/20250731/13/bd0f30fb-dc23-3182-8cbf-3f3f27c129a8/1_org_zoom.jpg", title: "Basic and spectacular with charming prints" },
-    {id:12, categoryId: 14, name: "Girls (3-16 years)", img: "https://storage-cdn11.gloria-jeans.ru/cms/banners/98/57/66_desk_dOapbWfjcy2vhgMjKV6X.webp", title: "Checkered, classic, denim and thick cotton" },
+    {id:12, categoryId: 14, name: "Girls (3-16 years)", img: "https://dfcdn.defacto.com.tr/6/D7103A8_25SM_NM28_01_04.jpg", title: "Checkered, classic, denim and thick cotton" },
 
   ]
   const mobileData = [
