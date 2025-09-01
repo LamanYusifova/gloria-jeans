@@ -36,6 +36,8 @@ function Header() {
 
   useEffect(() => {
     document.body.style.overflow = (heartPopUp || emojiPopUp || basketPopUp) ? 'hidden' : 'auto'
+    console.log("kedfekf");
+    
   }, [heartPopUp, emojiPopUp, basketPopUp])
 
   useEffect(() => {
@@ -219,9 +221,9 @@ function Header() {
       </div>
 
       {/* Popups */}
-      {bg && <Search bg={bg} setBg={setBg} />}
-      {emojiPopUp && <Emoji setEmojiPopUp={setEmojiPopUp} emojiPopUp={emojiPopUp} />}
-      {heartPopUp && <Heart setHeartPopUp={setHeartPopUp} heartPopUp={heartPopUp} setEmojiPopUp={setEmojiPopUp} />}
+      {bg && <Search  setBg={setBg} />}
+      {emojiPopUp && <Emoji bsetEmojiPopUp={setEmojiPopUp}  emojiPopUp={emojiPopUp} />}
+      {heartPopUp && <Heart etHeartPopUp={setHeartPopUp} heartPopUp={heartPopUp} setEmojiPopUp={setEmojiPopUp} />}
       {basketPopUp && <Basket setBasketPopUp={setBasketPopUp} basketPopUp={basketPopUp} setEmojiPopUp={setEmojiPopUp} />}
     </>
   )

@@ -33,7 +33,7 @@ function Newsletter() {
         >
             <div className="marquee" ref={marqueeRef}>
                 {[...Array(20)].map((_, index) => (
-                    <span key={index} className="marquee-item1">
+                    <span key={index} className="marquee-item1 max-md:text-[32px]!">
                         {text}
                     </span>
                 ))}
