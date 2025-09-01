@@ -26,7 +26,7 @@ function Basket({ setBasketPopUp, basketPopUp, setEmojiPopUp, emojiPopUp  }) {
         <>
             {basketPopUp && (
                 <div className='bg-[#0009] fixed top-0 left-0 w-full h-full z-[1000] flex justify-center items-center ' onClick={() => setBasketPopUp(false)} >
-                    <div className='animate-slide-in w-[472px]  max-smm:w-full smm:right-[10px] h-[635px] lg:h-[715px]  rounded-[20px] top-5 fixed'>
+                    <div className='animate-slide-in w-[472px]  max-smm:w-full smm:right-[10px] h-[635px] lg:h-[715px]  rounded-[20px] top-2  fixed'>
                         <div className=' flex mb-3 gap-3' onClick={(e) => e.stopPropagation()}>
                             <div
                                 onClick={handleSecondClick}
