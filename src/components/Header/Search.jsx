@@ -41,7 +41,7 @@ function Search({ bg, setBg, cardImage }) {
         <div onClick={() => cancelClick()} className='overflow-y-auto bg-[#0000005d] fixed inset-0 top-[86px] lg:top-[110px] z-50'>
           <div onClick={(e) => e.stopPropagation()} className='animate-slide-search bg-white  lg:h-full  w-full pt-6'>
             <ul className='lg:hidden flex gap-2 justify-center  mt-6 max-smm1:overflow-x-scroll   '>
-              {data.slice(0, 4).map((item, i) => <Link key={i} to={`/category/${item.id}`} onClick={() => cancelClick()} ><li  className='p-2 border-2 rounded-[10px] cursor-pointer'>{item.name}</li></Link>)}
+              {data.slice(0, 4).map((item, i) => <Link key={i} to={`/category/${item.id}`} onClick={() => cancelClick()} ><li className='p-2 border-2 rounded-[10px] cursor-pointer'>{item.name}</li></Link>)}
             </ul>
             <div onClick={(e) => e.stopPropagation()} className='flex items-center justify-center gap-3 h-[80px] w-full '>
               <span className='translate-x-12 text-[24px]'><IoMdSearch /></span>
@@ -67,12 +67,14 @@ function Search({ bg, setBg, cardImage }) {
                   ))}
                 </ul>
               </div>
-              <div onClick={(e) => e.stopPropagation()} className='flex-1 min-w-0 max-lg:hidden'>
-                <div onClick={cancelClick} className='product grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6'>
-                  {products?.slice(0, 3).map(product => (
-                    <ProductCard key={product.id} data={product}  />
-                  ))}
-                </div>
+              <div className='flex-1 min-w-0 max-lg:hidden'>
+                
+                  <div onClick={cancelClick} className='product grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6'>
+                    {products?.slice(0, 3).map(product => (
+                      <ProductCard key={product.id} data={product} />
+                    ))}
+                  </div>
+              
               </div>
             </div>
           </div>

@@ -6,6 +6,7 @@ import Newsletter from './Newsletter'
 import SubCard from './SubCard'
 import { getAllProducts } from '../../services'
 import MageSwiper from './MageSwiper'
+import SizeChart from './SizeChart'
 
 function Main() {
   const cardImage = [

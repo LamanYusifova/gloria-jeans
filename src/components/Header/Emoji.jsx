@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BsEmojiFrownFill } from 'react-icons/bs';
 import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6';
 import { IoCloseSharp } from 'react-icons/io5';
@@ -10,6 +10,11 @@ function Emoji({ setEmojiPopUp, emojiPopUp }) {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const [isFocusedEmail, setIsFocusedEmail] = useState(false);
+
+    useEffect(() => {
+        document.body.style.overflow = (emojiPopUp) ? 'hidden' : 'auto'
+    
+      }, [ emojiPopUp])
 
     const validateEmail = (value) => {
         setEmail(value);
