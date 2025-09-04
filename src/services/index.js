@@ -31,4 +31,10 @@ async function getProdForDetails(id) {
     return res.data;
 }
 
-export { getData, getAllProducts, getSubcategoriesById, getProdBySubCatId, getProdForCategory, getProdForDetails }
+async function getAllBrands(){
+    const res = await instance.get('/brands/all')
+    return res.data.data
+}
+
+
+export { getData, getAllProducts, getSubcategoriesById, getProdBySubCatId, getProdForCategory, getProdForDetails, getAllBrands }

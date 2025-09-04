@@ -4,7 +4,6 @@ export const BasketContext = createContext();
 
 export function BasketProvider({ children }) {
   const [basketData, setBasketData] = useState(() => {
-    // LocalStorage-dan oxu
     const saved = localStorage.getItem("basket");
     return saved ? JSON.parse(saved) : [];
   });
@@ -13,19 +12,21 @@ export function BasketProvider({ children }) {
   const [emojiPopUp, setEmojiPopUp] = useState(false);
 
   useEffect(() => {
-    // Basket dəyişdikdə localStorage-a yaz
     localStorage.setItem("basket", JSON.stringify(basketData));
   }, [basketData]);
 
   const addToBasket = (item) => {
     setBasketData(prev => {
-      // Eyni məhsulu tap (id + selectedSize)
+      // Eyni məhsulu tap (id + selectedSize + selectedColor)
       const existingIndex = prev.findIndex(
-        x => x.id === item.id && x.selectedSize === item.selectedSize
+        x =>
+          x.id === item.id &&
+          x.selectedSize === item.selectedSize &&
+          x.selectedColor === item.selectedColor
       );
 
       if (existingIndex !== -1) {
-        // Eyni məhsul varsa quantity artırsın
+        // Mövcud məhsul varsa quantity artırsın
         const newBasket = [...prev];
         newBasket[existingIndex].quantity += 1;
         return newBasket;
@@ -36,14 +37,16 @@ export function BasketProvider({ children }) {
     });
   };
 
-  const removeFromBasket = (id, size) => {
-    setBasketData(prev => prev.filter(x => !(x.id === id && x.selectedSize === size)));
+  const removeFromBasket = (id, size, color) => {
+    setBasketData(prev =>
+      prev.filter(x => !(x.id === id && x.selectedSize === size && x.selectedColor === color))
+    );
   };
 
-  const updateQuantity = (id, size, newQuantity) => {
+  const updateQuantity = (id, size, color, newQuantity) => {
     setBasketData(prev =>
       prev.map(item =>
-        item.id === id && item.selectedSize === size
+        item.id === id && item.selectedSize === size && item.selectedColor === color
           ? { ...item, quantity: newQuantity }
           : item
       )
@@ -51,16 +54,19 @@ export function BasketProvider({ children }) {
   };
 
   return (
-    <BasketContext.Provider value={{
-      basketData,
-      setBasketData,
-      addToBasket,
-      removeFromBasket,
-      updateQuantity,
-      basketPopUp,
-      setBasketPopUp,
-      emojiPopUp, setEmojiPopUp 
-    }}>
+    <BasketContext.Provider
+      value={{
+        basketData,
+        setBasketData,
+        addToBasket,
+        removeFromBasket,
+        updateQuantity,
+        basketPopUp,
+        setBasketPopUp,
+        emojiPopUp,
+        setEmojiPopUp,
+      }}
+    >
       {children}
     </BasketContext.Provider>
   );

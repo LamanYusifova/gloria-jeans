@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { FaHeart } from 'react-icons/fa6'
 import SelectSize from './SelectSize'
-import { WishlistContext } from './WishlistContext'
-import { BasketContext } from './BasketContext'
+import { BasketContext } from '../Context/BasketContext'
+import { WishlistContext } from '../Context/WishlistContext'
 
 function Wishlist() {
     const { wishlistData, removeFromWishlist } = useContext(WishlistContext)
@@ -64,7 +64,7 @@ function Wishlist() {
 
                     <button
                         onClick={() => handlePriceClick(item.id)}
-                        className={`relative flex items-center justify-center w-[40%] h-10 overflow-hidden border rounded-[10px] hover:bg-black hover:text-white transition-colors`}
+                        className={`cursor-pointer relative flex items-center justify-center w-[40%] h-10 overflow-hidden border rounded-[10px] hover:bg-black hover:text-white transition-colors`}
                     >
                         <span
                             className={`absolute w-full text-black h-full hover:text-white flex items-center justify-center transition-transform duration-300

@@ -12,8 +12,8 @@ import { MdHome } from "react-icons/md"
 import { RiMenuSearchLine } from "react-icons/ri"
 import { FiUser } from "react-icons/fi"
 import { getData, getProdForDetails } from "../../services"
-import { BasketContext } from "./BasketContext"
-import { WishlistContext } from "./WishlistContext"
+import { BasketContext } from "../Context/BasketContext"
+import { WishlistContext } from "../Context/WishlistContext"
 
 function Header() {
   const { id } = useParams()

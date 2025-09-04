@@ -3,12 +3,12 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { PiHandbagSimpleBold } from 'react-icons/pi';
 import { IoMdClose } from 'react-icons/io';
 import Emoji from './Emoji';
-import { BasketContext } from './BasketContext';
-import { WishlistContext } from './WishlistContext';
+import { BasketContext } from '../Context/BasketContext';
 import BasketSvg from './BasketSvg';
 import WishlistSvg from './WishlistSvg';
 import ShopingCart from './ShopingCart';
 import Wishlist from './Wishlist';
+import { WishlistContext } from '../Context/WishlistContext';
 
 function Basket() {
     const [basketToggled, setBasketToggled] = useState(false);
@@ -45,7 +45,6 @@ function Basket() {
         }, 1500);
     };
 
-
     return (
         <>
             {basketPopUp && (
@@ -58,7 +57,7 @@ function Basket() {
                         <div className='flex mb-3 gap-3' onClick={e => e.stopPropagation()}>
                             <div
                                 onClick={handleSecondClick}
-                                className={`rounded-[10px] p-3 ${basketToggled ? "bg-white text-black" : "bg-black text-white"} flex items-center gap-3`}
+                                className={`cursor-pointer rounded-[10px] p-3 ${basketToggled ? "bg-white text-black" : "bg-black text-white"} flex items-center gap-3`}
                                 style={{ width: `${basketToggled ? 20 : 80}%`, transition: "width 0.5s ease-in-out" }}
                             >
                                 <PiHandbagSimpleBold /> {!basketToggled && <p>Basket</p>}
@@ -92,29 +91,32 @@ function Basket() {
                                         <ShopingCart />
                                     )}
                                 </div>
-                                {basketData.length > 0 && (
-                                    <div className='py-4 w-full flex flex-col items-center bg-white rounded-b-[20px]'>
-                                        <button
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleConfirm();
-                                            }}
-                                            className={`w-[90%] py-2 rounded-[10px] transition-all duration-300 flex justify-center items-center gap-2 ${loading ? 'bg-gray-500' : 'bg-black'
-                                                } text-white`}
-                                        >
-                                            {loading ? (
-                                                // Spinner SVG
-                                                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                                                </svg>
-                                            ) : confirmed ? (
-                                                '🗸 Confirmed'
-                                            ) : (
-                                                'Confirm'
-                                            )}
-                                        </button>
 
+                                {basketData.length > 0 && (
+                                    <div className='py-4 w-full flex justify-center bg-white rounded-b-[20px] px-6'>
+                                        {basketData.length > 0 && (
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleConfirm();
+                                                }}
+                                                className={`w-full cursor-pointer py-2 px-6 rounded-[10px] transition-all duration-300 flex justify-center items-center gap-4 ${loading ? 'bg-gray-500' : 'bg-black'} text-white`}
+                                            >
+                                                {loading ? (
+                                                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                                    </svg>
+                                                ) : confirmed ? (
+                                                    '🗸 Confirmed'
+                                                ) : (
+                                                    <>
+                                                        <span>Confirm</span>
+                                                        <span>{totalPrice.toFixed(2)} $</span>
+                                                    </>
+                                                )}
+                                            </button>
+                                        )}
                                     </div>
                                 )}
                             </>

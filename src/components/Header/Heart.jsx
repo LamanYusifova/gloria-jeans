@@ -6,15 +6,36 @@ import { IoMdClose } from 'react-icons/io';
 import { Link } from 'react-router';
 import BasketSvg from './BasketSvg';
 import WishlistSvg from './WishlistSvg';
-import { WishlistContext } from './WishlistContext';
-import { BasketContext } from './BasketContext';
+import { BasketContext } from '../Context/BasketContext';
 import Wishlist from './Wishlist';
 import ShopingCart from './ShopingCart';
+import { WishlistContext } from '../Context/WishlistContext';
 
 function Heart({ setHeartPopUp, heartPopUp, emojiPopUp, setEmojiPopUp, basketPopUp, setBasketPopUp }) {
     const [isToggled, setIsToggled] = useState(false);
     const { wishlistData } = useContext(WishlistContext);
     const { basketData } = useContext(BasketContext);
+    const [loading, setLoading] = useState(false);
+    const [confirmed, setConfirmed] = useState(false);
+    const totalPrice = basketData.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+
+    const handleConfirm = () => {
+        if (loading || confirmed) return;
+
+        setLoading(true);
+
+        // 1.5 saniyə sonra Confirmed göstərilsin
+        setTimeout(() => {
+            setLoading(false);
+            setConfirmed(true);
+
+            // 1 saniyə sonra səbəti boşalt, amma popup açıq qalsın
+            setTimeout(() => {
+                setBasketData([]);
+                setConfirmed(false);
+            }, 1000);
+        }, 1500);
+    };
 
 
     useEffect(() => {
@@ -68,24 +89,53 @@ function Heart({ setHeartPopUp, heartPopUp, emojiPopUp, setEmojiPopUp, basketPop
                                 onClick={e => e.stopPropagation()}
                             >
                                 {wishlistData.length === 0 ? (
-                                        <WishlistSvg />
-                                    ) : (
-                                        <Wishlist />
-                                    )}
+                                    <WishlistSvg />
+                                ) : (
+                                    <Wishlist />
+                                )}
                             </div>
                         )}
 
                         {isToggled && (
-                            <div
-                                className='relative bg-white rounded-[20px] max-smm:w-full smm:right-[10px] h-[570px] lg:h-[650px] overflow-y-scroll'
-                                onClick={e => e.stopPropagation()}
-                            >
-                                {basketData.length === 0 ? (
+                            <>
+                                <div
+                                    className={`bg-white rounded-t-[20px] max-smm:w-full smm:right-[10px] ${basketData.length === 0 ? 'lg:h-[650px] rounded-[20px]' : 'h-[570px] lg:h-[570px]'
+                                        } overflow-y-scroll`} onClick={e => e.stopPropagation()}
+                                >
+                                    {basketData.length === 0 ? (
                                         <BasketSvg />
                                     ) : (
                                         <ShopingCart />
                                     )}
-                            </div>
+                                </div>
+                                {basketData.length > 0 && (
+                                    <div className='py-4 w-full flex justify-center bg-white rounded-b-[20px] px-6'>
+                                        {basketData.length > 0 && (
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleConfirm();
+                                                }}
+                                                className={`w-full cursor-pointer py-2 px-6 rounded-[10px] transition-all duration-300 flex justify-center items-center gap-4 ${loading ? 'bg-gray-500' : 'bg-black'} text-white`}
+                                            >
+                                                {loading ? (
+                                                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                                    </svg>
+                                                ) : confirmed ? (
+                                                    '🗸 Confirmed'
+                                                ) : (
+                                                    <>
+                                                        <span>Confirm</span>
+                                                        <span>{totalPrice.toFixed(2)} $</span>
+                                                    </>
+                                                )}
+                                            </button>
+                                        )}
+                                    </div>
+                                )}
+                            </>
                         )}
                     </div>
                 </div>
