@@ -36,5 +36,10 @@ async function getAllBrands(){
     return res.data.data
 }
 
+async function searchItem(value) {
+    const res = await instance.get(`/products/search?q=${value}`)
+    return res.data
+}
 
-export { getData, getAllProducts, getSubcategoriesById, getProdBySubCatId, getProdForCategory, getProdForDetails, getAllBrands }
+
+export { getData, getAllProducts, getSubcategoriesById, getProdBySubCatId, getProdForCategory, getProdForDetails, getAllBrands, searchItem }

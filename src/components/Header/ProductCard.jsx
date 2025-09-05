@@ -9,7 +9,7 @@ import SelectSize from './SelectSize';
 import { BasketContext } from '../Context/BasketContext';
 import { WishlistContext } from '../Context/WishlistContext';
 
-function ProductCard({ data }) {
+function ProductCard({ data, cancelClick, setCancel, cancel }) {
   const { addToBasket, setBasketPopUp } = useContext(BasketContext);
   const { wishlistData, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
 
@@ -57,7 +57,7 @@ function ProductCard({ data }) {
       <div className='relative group flex flex-col h-full gap-4 border border-gray-300 p-3 rounded-[10px] justify-between'>
 
         {/* Product Images */}
-        <Link to={`/details/${data.id}`}>
+        <Link to={`/details/${data.id}`} onClick={cancelClick}>
           <div className="relative w-full pt-3">
             <Swiper
               loop={data?.images?.length > 1}
@@ -104,6 +104,11 @@ function ProductCard({ data }) {
             </div>
           ))}
         </div>
+        {console.log(data)
+        }
+        
+        <h4 className='font-bold'>{data.name}</h4>
+        
 
         {/* Description */}
         <p className="text-xs sm:text-sm lg:text-base px-2 sm:px-0">

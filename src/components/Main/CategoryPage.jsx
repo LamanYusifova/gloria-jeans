@@ -5,18 +5,18 @@ import { Link, useParams } from 'react-router'
 import { getData, getProdBySubCatId, getSubcategoriesById } from '../../services'
 import ProductCard from '../Header/ProductCard'
 import Filter from './Filter'
+import { useProducts } from '../Context/ProductContext' // <-- context
 
 function CategoryPage() {
   const { id } = useParams()
+  const { filters } = useProducts() // <-- filters
   const [count, setCount] = useState(8)
   const [data, setData] = useState([])
   const [shuffledData, setShuffledData] = useState([])
   const [category, setCategory] = useState(null)
   const [filterPopUp, setFilterPopUp] = useState(false)
 
-  const toggledFilter = () => {
-    setFilterPopUp(!filterPopUp)
-  }
+  const toggledFilter = () => setFilterPopUp(!filterPopUp)
 
   useEffect(() => {
     getData().then(res => {
@@ -66,6 +66,42 @@ function CategoryPage() {
     return shuffled
   }
 
+  // -------- FILTER (təhlükəsiz)
+  const selCats = Array.isArray(filters?.categories) ? filters.categories : []
+  const selBrands = Array.isArray(filters?.brands) ? filters.brands : []
+  const selSizes = Array.isArray(filters?.sizes) ? filters.sizes : []
+  const selColors = Array.isArray(filters?.colors) ? filters.colors : []
+
+  const normalized = (v) => String(v || '').toLowerCase()
+
+  const filteredProducts = shuffledData.filter(product => {
+    // Category/Subcategory (subcategory adları: Clothing, Shoes, Bags)
+    const byCategory =
+      selCats.length === 0 ||
+      selCats.map(normalized).includes(normalized(product?.subcategory?.name)) ||
+      selCats.map(normalized).includes(normalized(product?.category?.name))
+
+    // Brand
+    const byBrand =
+      selBrands.length === 0 ||
+      selBrands.map(normalized).includes(normalized(product?.Brands?.name))
+
+    // Size
+    const bySize =
+      selSizes.length === 0 ||
+      (Array.isArray(product?.Size) && product.Size.some(s => selSizes.map(normalized).includes(normalized(s))))
+
+    // Color
+    const byColor =
+      selColors.length === 0 ||
+      (Array.isArray(product?.Colors) && product.Colors.some(c => selColors.map(normalized).includes(normalized(c))))
+
+    return byCategory && byBrand && bySize && byColor
+  })
+  // --------
+
+  const visible = filteredProducts // layoutun qalanı toxunulmur
+
   return (
     <>
       <div className='relative'>
@@ -79,33 +115,43 @@ function CategoryPage() {
         </h2>
 
         <div onClick={toggledFilter} className='flex items-center justify-end'>
-          <div className='flex items-center bg-[#f6f6f6] mr-6 gap-2 px-5 py-2 rounded-[10px] text-gray-600 mb-4'>
+          <div className='cursor-pointer flex items-center bg-[#f6f6f6] mr-6 gap-2 px-5 py-2 rounded-[10px] text-gray-600 mb-4'>
             <FiPlus />
-            <p  className='text-sm sm:text-base'>Filter</p>
+            <p className='text-sm sm:text-base'>Filter</p>
           </div>
         </div>
 
         <div className='p-10'>
-          {shuffledData?.length > 0 ? (
+          {visible?.length > 0 ? (
             <div className='product grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full'>
-              {shuffledData.slice(0, count).map((product, idx) => (
+              {visible.slice(0, count).map((product, idx) => (
                 <ProductCard key={idx} data={product} />
               ))}
-              {console.log(shuffledData)
-              }
             </div>
           ) : (
-            <p className='text-gray-500'>Bu kateqoriyada məhsul tapılmadı.</p>
+            <div className=' product grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full'>
+              {[...Array(count)].map((_, idx) => (
+                <div key={idx} className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-[500px] border border-gray-300">
+                  <div className=" h-[300px] rounded-t"></div>
+                  <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 border border-gray-300 ">
+                    <div className="border border-gray-300 w-full h-6 rounded "></div>
+                    <div className="border border-gray-300 w-full h-6 rounded "></div>
+                    <div className="border border-gray-300 w-3/4 h-6 rounded "></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
-        {count < shuffledData.length && (
+        {count < visible.length && (
           <div className='flex items-center justify-center py-5'>
             <button onClick={increaseCount} className='bg-black w-[200px] py-3 px-6 text-white rounded-[50px]'>
-              Load more ({shuffledData.length - count})
+              Load more ({visible.length - count})
             </button>
           </div>
         )}
       </div>
+
       {filterPopUp && (
         <Filter toggledFilter={toggledFilter} filterPopUp={filterPopUp} />
       )}
