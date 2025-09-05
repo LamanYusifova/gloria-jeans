@@ -122,7 +122,7 @@ function Details() {
                 <div key={i} className='flex flex-col items-center'>
                   <button 
                     onClick={() => setSelectedColor(color)}
-                    className='cursor-pointer w-[20px] h-[20px] rounded-full transition-all duration-200'
+                    className='cursor-pointer w-[20px] h-[20px] rounded-full transition-all duration-200 border border-gray-300'
                     style={{ backgroundColor: color }}
                   ></button>
                   {selectedColor === color && (
