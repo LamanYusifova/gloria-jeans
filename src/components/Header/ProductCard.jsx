@@ -54,7 +54,7 @@ function ProductCard({ data }) {
 
   return (
     <div className='flex flex-col gap-3 w-full mx-auto justify-around'>
-      <div className='relative group flex flex-col h-full gap-4 border border-gray-300 p-3 rounded-[10px]'>
+      <div className='relative group flex flex-col h-full gap-4 border border-gray-300 p-3 rounded-[10px] justify-between'>
 
         {/* Product Images */}
         <Link to={`/details/${data.id}`}>
@@ -96,7 +96,7 @@ function ProductCard({ data }) {
           {data?.Colors?.map((color, i) => (
             <div key={i} className='flex flex-col items-center'>
               <button onClick={() => setSelectedColor(color)}
-                className={`cursor-pointer w-[20px] h-[20px] rounded-full transition-all duration-200`}
+                className={`cursor-pointer w-[20px] h-[20px] rounded-full transition-all duration-200 border border-gray-300`}
                 style={{ backgroundColor: color }}></button>
               {selectedColor === color && (
                 <div className="w-[12px] h-[2px] bg-black mt-1 rounded-full"></div> // Alt xət

@@ -30,16 +30,16 @@ function SubCategory() {
     }, [id])
 
     useEffect(() => {
-    data.forEach(item => {
-        item.Subcategory?.forEach(sub => {
-            if (sub.id === Number(id)) {
-                setName1(sub.name);
-                setCategoryId(item.id);
-                setCategoryName(item.name);
-            }
+        data.forEach(item => {
+            item.Subcategory?.forEach(sub => {
+                if (sub.id === Number(id)) {
+                    setName1(sub.name);
+                    setCategoryId(item.id);
+                    setCategoryName(item.name);
+                }
+            });
         });
-    });
-}, [data, id]);
+    }, [data, id]);
 
     return (
 
@@ -55,9 +55,17 @@ function SubCategory() {
 
             {/* Başlıq */}
             <h2 className='flex items-center justify-center font-bold text-[26px] p-4'>
+                {name1}
             </h2>
 
-            
+            <div className='flex items-center justify-end'>
+                <div className='flex items-center bg-[#f6f6f6] mr-6 gap-2 px-5 py-2 rounded-[10px] text-gray-600 mb-4'>
+                    <FiPlus />
+                    <p className='text-sm sm:text-base'>Filter</p>
+                </div>
+            </div>
+
+
 
             {/* Məhsullar */}
             <div className='p-10'>

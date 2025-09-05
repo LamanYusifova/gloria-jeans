@@ -91,6 +91,8 @@ function CategoryPage() {
               {shuffledData.slice(0, count).map((product, idx) => (
                 <ProductCard key={idx} data={product} />
               ))}
+              {console.log(shuffledData)
+              }
             </div>
           ) : (
             <p className='text-gray-500'>Bu kateqoriyada məhsul tapılmadı.</p>

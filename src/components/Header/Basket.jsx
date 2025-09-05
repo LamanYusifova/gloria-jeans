@@ -19,8 +19,11 @@ function Basket() {
     const { wishlistData } = useContext(WishlistContext);
 
     useEffect(() => {
-        document.body.style.overflow = basketPopUp ? 'hidden' : 'auto';
-    }, [basketPopUp]);
+            document.body.style.overflow = basketPopUp ? 'hidden' : 'auto';
+            return () => {
+                document.body.style.overflow = 'auto'; // komponent bağlananda scrollu bərpa et
+            };
+        }, [basketPopUp]);
 
     const handleSecondClick = () => setBasketToggled(!basketToggled);
 
