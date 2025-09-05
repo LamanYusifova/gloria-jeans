@@ -22,13 +22,12 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [bg, setBg] = useState(false)
   const [icons, setIcons] = useState(false)
-  const [emojiPopUp, setEmojiPopUp] = useState(false)
   const [heartPopUp, setHeartPopUp] = useState(false)
   const location = useLocation()
   const categoryPathMatch = location.pathname.match(/^\/category\/([^/]+)/) || location.pathname.match(/^\/subcategory\/([^/]+)/) || location.pathname.match(/^\/details\/([^/]+)/)
   const categoryFromURL = categoryPathMatch ? categoryPathMatch[1] : null
   const isProductPage = categoryFromURL !== null
-  const { basketData, basketPopUp, setBasketPopUp } = useContext(BasketContext);
+  const { basketData, basketPopUp, setBasketPopUp, setEmojiPopUp, emojiPopUp } = useContext(BasketContext);
   const { wishlistData } = useContext(WishlistContext);
 
 
@@ -226,7 +225,7 @@ function Header() {
       {bg && <Search setBg={setBg} />}
       {emojiPopUp && <Emoji setEmojiPopUp={setEmojiPopUp} emojiPopUp={emojiPopUp} />}
       {heartPopUp && <Heart setHeartPopUp={setHeartPopUp} heartPopUp={heartPopUp} setEmojiPopUp={setEmojiPopUp} />}
-      {basketPopUp && <Basket setBasketPopUp={setBasketPopUp} basketPopUp={basketPopUp} setEmojiPopUp={setEmojiPopUp} />}
+      {basketPopUp && <Basket emojiPopUp={emojiPopUp}  setEmojiPopUp={setEmojiPopUp} />}
     </>
   )
 }

@@ -3,7 +3,8 @@ import { FaMinus, FaPlus, FaTrash } from "react-icons/fa6";
 import { BasketContext } from "../Context/BasketContext";
 
 function ShoppingCart() {
-  const { basketData, setBasketData, removeFromBasket, updateQuantity } = useContext(BasketContext);
+    const {basketData, setBasketData, removeFromBasket, updateQuantity, heartPopUp, setHeartPopUp, setEmojiPopUp, emojiPopUp, basketPopUp, setBasketPopUp } = useContext(WishlistContext);
+
 
   if (!basketData || basketData.length === 0) {
     return <p className="p-4 text-center">Basket is empty</p>;
@@ -11,11 +12,16 @@ function ShoppingCart() {
 
   return (
     <div>
-      <div className="flex items-center justify-between p-4">
-        <span>{basketData.length} {basketData.length === 1 ? "product" : "products"}</span>
+      {/* Top bar with total products and delete all */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <span>
+          {basketData.reduce((acc, item) => acc + item.quantity, 0)}{" "}
+          {basketData.length === 1 ? "product" : "products"}
+        </span>
         <button className="cursor-pointer" onClick={() => setBasketData([])}>Delete All</button>
       </div>
 
+      {/* Basket items */}
       {basketData.map((item, index) => (
         <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}-${index}`} className="flex p-4 border-b border-gray-200">
           <div className="w-1/3">
@@ -32,7 +38,7 @@ function ShoppingCart() {
 
             {/* Seçilmiş ölçü */}
             <button className="border border-gray-300 w-20 my-2">{item.selectedSize}</button>
-            
+
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 {item.quantity === 1 ? (

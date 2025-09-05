@@ -136,7 +136,7 @@ function Emoji({ setEmojiPopUp, emojiPopUp }) {
                 </div>
             ) : (
 
-                <div className='bg-[#0009] fixed top-0 left-0 w-full h-full z-[1000] flex justify-center items-center' onClick={handleClose}>
+                <div className='bg-[#0009] fixed top-0 left-0 w-full h-full !z-[1000000000] flex justify-center items-center' onClick={handleClose}>
                     <div className='animate-slide-in bg-white w-[472px]  max-smm:w-full smm:right-[10px] h-[635px] lg:h-[715px] fixed top-2  z-50 rounded-[20px]'
                         onClick={(e) => e.stopPropagation()}>
 

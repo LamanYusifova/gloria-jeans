@@ -61,7 +61,7 @@ function Main() {
   if (loading) {
     return (
       <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
-        <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-purple-600"></div>
+        <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin "></div>
       </div>
     )
   }

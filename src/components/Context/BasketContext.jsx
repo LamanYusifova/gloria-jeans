@@ -10,6 +10,7 @@ export function BasketProvider({ children }) {
 
   const [basketPopUp, setBasketPopUp] = useState(false);
   const [emojiPopUp, setEmojiPopUp] = useState(false);
+  const [heartPopUp, setHeartPopUp] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("basket", JSON.stringify(basketData));
@@ -65,6 +66,8 @@ export function BasketProvider({ children }) {
         setBasketPopUp,
         emojiPopUp,
         setEmojiPopUp,
+        heartPopUp,
+        setHeartPopUp
       }}
     >
       {children}

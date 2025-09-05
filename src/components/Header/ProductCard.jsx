@@ -104,8 +104,6 @@ function ProductCard({ data, cancelClick, setCancel, cancel }) {
             </div>
           ))}
         </div>
-        {console.log(data)
-        }
         
         <h4 className='font-bold'>{data.name}</h4>
         

@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { BasketContext } from '../Context/BasketContext';
 
-export default function BasketSvg({ setEmojiPopUp }) {
+export default function BasketSvg() {
+    const { heartPopUp, setHeartPopUp, setEmojiPopUp, emojiPopUp, basketPopUp, setBasketPopUp } = useContext(BasketContext);
+
+
+
     const login1Click = () => {
         // Yalnız varsa çağır
         if (setEmojiPopUp) {

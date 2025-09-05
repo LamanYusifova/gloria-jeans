@@ -11,10 +11,13 @@ import Wishlist from './Wishlist';
 import ShopingCart from './ShopingCart';
 import { WishlistContext } from '../Context/WishlistContext';
 
-function Heart({ setHeartPopUp, heartPopUp, emojiPopUp, setEmojiPopUp, basketPopUp, setBasketPopUp }) {
+function Heart({ setHeartPopUp, heartPopUp,  }) {
     const [isToggled, setIsToggled] = useState(false);
     const { wishlistData } = useContext(WishlistContext);
-    const { basketData } = useContext(BasketContext);
+    
+    const { basketData, basketPopUp, setBasketPopUp, setEmojiPopUp, emojiPopUp  } = useContext(BasketContext);
+    console.log(setEmojiPopUp);
+    
     const [loading, setLoading] = useState(false);
     const [confirmed, setConfirmed] = useState(false);
     const totalPrice = basketData.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
@@ -89,7 +92,7 @@ function Heart({ setHeartPopUp, heartPopUp, emojiPopUp, setEmojiPopUp, basketPop
                                 onClick={e => e.stopPropagation()}
                             >
                                 {wishlistData.length === 0 ? (
-                                    <WishlistSvg />
+                                    <WishlistSvg setEmojiPopUp={setEmojiPopUp} emojiPopUp={emojiPopUp} />
                                 ) : (
                                     <Wishlist />
                                 )}

@@ -114,7 +114,9 @@ function Details() {
 
           {/* Color Selection */}
           <div>
-            <p className='text-gray-600 uppercase mb-2'>CHOOSE COLOR:</p>
+            {details?.Colors?.length > 0 ? 
+              <>
+              <p className='text-gray-600 uppercase mb-2'>CHOOSE COLOR:</p>
             <div className='flex gap-2 w-full py-3'>
               {details?.Colors?.map((color, i) => (
                 <div key={i} className='flex flex-col items-center'>
@@ -129,6 +131,8 @@ function Details() {
                 </div>
               ))}
             </div>
+            </> : ""
+            }
           </div>
 
           {/* Size Selection */}

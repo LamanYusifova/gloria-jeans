@@ -1,12 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { FaHeart } from 'react-icons/fa6'
 import SelectSize from './SelectSize'
-import { BasketContext } from '../Context/BasketContext'
 import { WishlistContext } from '../Context/WishlistContext'
 
 function Wishlist() {
-    const { wishlistData, removeFromWishlist } = useContext(WishlistContext)
-    const { addToBasket, setBasketPopUp } = useContext(BasketContext)
+    const { wishlistData, removeFromWishlist, addToBasket, heartPopUp, setHeartPopUp, setEmojiPopUp, emojiPopUp, basketPopUp, setBasketPopUp } = useContext(WishlistContext);
+
 
     // State-lərin default dəyərləri
     const [selectedSizeMap, setSelectedSizeMap] = useState({})

@@ -1,8 +1,13 @@
-import  { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 export const WishlistContext = createContext()
 
 export const WishlistProvider = ({ children }) => {
+
+    const [basketPopUp, setBasketPopUp] = useState(false);
+    const [emojiPopUp, setEmojiPopUp] = useState(false);
+    const [heartPopUp, setHeartPopUp] = useState(false);
+
     const [wishlistData, setWishlistData] = useState(() => {
         // İlk yükləmədə localStorage-dən oxu
         const saved = localStorage.getItem('wishlist')
@@ -32,7 +37,17 @@ export const WishlistProvider = ({ children }) => {
     }
 
     return (
-        <WishlistContext.Provider value={{ wishlistData, addToWishlist, removeFromWishlist }}>
+        <WishlistContext.Provider value={{
+            wishlistData, 
+            addToWishlist, 
+            removeFromWishlist, 
+            basketPopUp,
+            setBasketPopUp,
+            emojiPopUp,
+            setEmojiPopUp,
+            heartPopUp,
+            setHeartPopUp
+        }}>
             {children}
         </WishlistContext.Provider>
     )
