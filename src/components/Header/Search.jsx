@@ -4,14 +4,18 @@ import ProductCard from './ProductCard'
 import { getData, searchItem } from '../../services'
 import { Link } from 'react-router'
 import { useProducts } from '../Context/ProductContext'
+import { RxHamburgerMenu } from 'react-icons/rx'
+import SearchSubCat from './SearchSubCat'
+import AccordionItemSearch from './AccordionItemSearch'
 
 function Search({ bg, setBg, cardImage }) {
   const [cancel, setCancel] = useState(false)
   const [data, setData] = useState([])
   const [products, setProducts] = useState([]) // search nəticələri
-  const { searchQuery, setSearchQuery } = useProducts()
+  const {searchQuery, setSearchQuery } = useProducts()
   const [showDropdown, setShowDropdown] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [searchBurgerMenu, setSearchBurgerMenu] = useState(false)
 
   useEffect(() => {
     getData().then(res => setData(res))
@@ -31,6 +35,10 @@ function Search({ bg, setBg, cardImage }) {
     }, 300) // 300ms debounce
     return () => clearTimeout(handler)
   }, [searchQuery])
+
+  const openSubCategories = () => {
+    setSearchBurgerMenu(!searchBurgerMenu)
+  }
 
   const handleChange = (e) => {
     const value = e.target.value
@@ -86,10 +94,11 @@ function Search({ bg, setBg, cardImage }) {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="animate-slide-search bg-white lg:h-full w-full pt-6"
+            className="animate-slide-search bg-white h-[680px] lg:h-full w-full pt-6 overflow-scroll"
           >
             {/* Mobile top categories */}
-            <ul className="lg:hidden flex gap-2 justify-center mt-6 max-smm1:overflow-x-scroll">
+            <ul className="lg:hidden flex gap-3 items-center justify-center mt-6 max-smm1:overflow-x-scroll">
+              <RxHamburgerMenu onClick={openSubCategories} className='text-[30px]' />
               {data.slice(0, 4).map((item, i) => (
                 <li
                   key={i}
@@ -166,6 +175,10 @@ function Search({ bg, setBg, cardImage }) {
           </div>
         </div>
       )}
+      {searchBurgerMenu && (
+        <SearchSubCat setSearchBurgerMenu={setSearchBurgerMenu} searchBurgerMenu={searchBurgerMenu} openSubCategories={openSubCategories} cancelClick={cancelClick}/>
+      )}
+      
     </>
   )
 }

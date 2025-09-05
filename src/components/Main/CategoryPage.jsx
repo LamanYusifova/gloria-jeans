@@ -131,7 +131,7 @@ function CategoryPage() {
           ) : (
             <div className=' product grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full'>
               {[...Array(count)].map((_, idx) => (
-                <div key={idx} className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-[500px] border border-gray-300">
+                <div key={idx} className="flex flex-col m-2 mx-auto rounded shadow-md w-[300px] sm:w-80 animate-pulse h-[500px] border border-gray-300">
                   <div className=" h-[300px] rounded-t"></div>
                   <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 border border-gray-300 ">
                     <div className="border border-gray-300 w-full h-6 rounded "></div>

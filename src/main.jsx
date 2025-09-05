@@ -7,6 +7,7 @@ import Main from './components/Main/Index.jsx'
 import CategoryPage from './components/Main/CategoryPage.jsx'
 import SubCategory from './components/Main/SubCategory.jsx'
 import Details from './components/Main/Details.jsx'
+import Error from './components/Error.jsx'
 
 
 const router = createBrowserRouter([
@@ -16,9 +17,10 @@ const router = createBrowserRouter([
       { path: 'main', element: <Main /> },
       { path: 'category/:id', element: <CategoryPage /> },
       { path: 'subcategory/:id', element: <SubCategory /> },
-      { path: 'details/:id', element: <Details /> }
+      { path: 'details/:id', element: <Details /> },
     ]
-  }
+  },
+  { path: '*', element: <Error /> }
 ])
 
 

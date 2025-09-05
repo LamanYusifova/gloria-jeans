@@ -15,8 +15,8 @@ function Heart({ setHeartPopUp, heartPopUp,  }) {
     const [isToggled, setIsToggled] = useState(false);
     const { wishlistData } = useContext(WishlistContext);
     
-    const { basketData, basketPopUp, setBasketPopUp, setEmojiPopUp, emojiPopUp  } = useContext(BasketContext);
-    console.log(setEmojiPopUp);
+    const { basketData, setBasketData, basketPopUp, setBasketPopUp, setEmojiPopUp, emojiPopUp  } = useContext(BasketContext);
+   
     
     const [loading, setLoading] = useState(false);
     const [confirmed, setConfirmed] = useState(false);

@@ -9,14 +9,17 @@ import SelectSize from './SelectSize';
 import { BasketContext } from '../Context/BasketContext';
 import { WishlistContext } from '../Context/WishlistContext';
 
-function ProductCard({ data, cancelClick, setCancel, cancel }) {
+function ProductCard({ data, cancelClick }) {
   const { addToBasket, setBasketPopUp } = useContext(BasketContext);
   const { wishlistData, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
 
   const [showSizes, setShowSizes] = useState(false);
-  const [buttonState, setButtonState] = useState('price'); // price | loading | added
+  const [buttonState, setButtonState] = useState('price');
   const [selectedSize, setSelectedSize] = useState(null);
-  const [selectedColor, setSelectedColor] = useState(data?.Colors?.[0] || null); // İlk rəng default
+  const [selectedColor, setSelectedColor] = useState(data?.Colors?.[0] || null);
+
+  // Sadə skeleton üçün state
+  const [loading, setLoading] = useState(true);
 
   const isInWishlist = wishlistData.some(
     item => item.id === data.id && item.selectedSize === data.selectedSize
@@ -30,9 +33,7 @@ function ProductCard({ data, cancelClick, setCancel, cancel }) {
     }
   };
 
-  const handlePriceClick = () => {
-    setShowSizes(!showSizes)
-  }
+  const handlePriceClick = () => setShowSizes(!showSizes);
 
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
@@ -40,7 +41,7 @@ function ProductCard({ data, cancelClick, setCancel, cancel }) {
 
     setTimeout(() => {
       setButtonState('added');
-      addToBasket({ ...data, selectedSize: size, selectedColor }); // Rəngi basketə əlavə et
+      addToBasket({ ...data, selectedSize: size, selectedColor });
       setBasketPopUp(true);
 
       setTimeout(() => {
@@ -55,8 +56,6 @@ function ProductCard({ data, cancelClick, setCancel, cancel }) {
   return (
     <div className='flex flex-col gap-3 w-full mx-auto justify-around'>
       <div className='relative group flex flex-col h-full gap-4 border border-gray-300 p-3 rounded-[10px] justify-between'>
-
-        {/* Product Images */}
         <Link to={`/details/${data.id}`} onClick={cancelClick}>
           <div className="relative w-full pt-3">
             <Swiper
@@ -66,15 +65,23 @@ function ProductCard({ data, cancelClick, setCancel, cancel }) {
               className="rounded-[15px] sm:rounded-[20px] h-full w-full"
             >
               {data?.images?.map((url, i) => (
-                <SwiperSlide key={i} className='relative w-full h-full '>
+                <SwiperSlide key={i} className='relative w-full h-full'>
+                  {/* Skeleton */}
+                  {loading && (
+                    <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg"></div>
+                  )}
+
                   <img
                     src={url}
                     alt={`slide ${i + 1}`}
-                    className="w-full h-full object-contain lg:object-cover "
+                    className={`w-full h-full object-contain lg:object-cover transition-opacity duration-300 ${
+                      loading ? 'opacity-0' : 'opacity-100'
+                    }`}
+                    onLoad={() => setLoading(false)}
                   />
+
                   {showSizes && <SelectSize sizes={data.Size} onSelect={handleSizeSelect} />}
 
-                  {/* Heart icon */}
                   <div
                     onClick={(e) => {
                       e.preventDefault();
@@ -95,30 +102,29 @@ function ProductCard({ data, cancelClick, setCancel, cancel }) {
         <div className='flex gap-2 w-full justify-end p-3'>
           {data?.Colors?.map((color, i) => (
             <div key={i} className='flex flex-col items-center'>
-              <button onClick={() => setSelectedColor(color)}
-                className={`cursor-pointer w-[20px] h-[20px] rounded-full transition-all duration-200 border border-gray-300`}
-                style={{ backgroundColor: color }}></button>
+              <button
+                onClick={() => setSelectedColor(color)}
+                className="cursor-pointer w-[20px] h-[20px] rounded-full transition-all duration-200 border border-gray-300"
+                style={{ backgroundColor: color }}
+              ></button>
               {selectedColor === color && (
-                <div className="w-[12px] h-[2px] bg-black mt-1 rounded-full"></div> // Alt xət
+                <div className="w-[12px] h-[2px] bg-black mt-1 rounded-full"></div>
               )}
             </div>
           ))}
         </div>
-        
-        <h4 className='font-bold'>{data.name}</h4>
-        
 
-        {/* Description */}
+        <h4 className='font-bold'>{data.name}</h4>
+
         <p className="text-xs sm:text-sm lg:text-base px-2 sm:px-0">
           {data?.description.length > 100
             ? data?.description.slice(0, 100) + "..."
             : data?.description}
         </p>
 
-        {/* Price Button */}
         <button
           onClick={handlePriceClick}
-          className={`relative flex items-center justify-center w-44 h-12 overflow-hidden border rounded-md mx-auto sm:mx-0 transition-colors duration-200 cursor-pointer`}
+          className="relative flex items-center justify-center w-44 h-12 overflow-hidden border rounded-md mx-auto sm:mx-0 transition-colors duration-200 cursor-pointer"
         >
           <span
             className={`absolute flex items-center justify-center w-full h-full transition-transform duration-300

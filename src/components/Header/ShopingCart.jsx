@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa6";
 import { BasketContext } from "../Context/BasketContext";
+import { WishlistContext } from "../Context/WishlistContext";
 
 function ShoppingCart() {
-    const {basketData, setBasketData, removeFromBasket, updateQuantity, heartPopUp, setHeartPopUp, setEmojiPopUp, emojiPopUp, basketPopUp, setBasketPopUp } = useContext(WishlistContext);
+    const { heartPopUp, setHeartPopUp, setEmojiPopUp, emojiPopUp, basketPopUp, setBasketPopUp } = useContext(WishlistContext);
+    const { basketData, setBasketData, removeFromBasket, updateQuantity } = useContext(BasketContext);
 
 
   if (!basketData || basketData.length === 0) {

@@ -18,7 +18,7 @@ function Filter({ toggledFilter, filterPopUp, filterPopUp1, setFilterPopUp1, hid
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="absolute md:top-4 right-0 z-[4000] w-[400px] lg:h-[700px] md:h-[620px] max-md:h-full overflow-y-scroll bg-white p-5 rounded-[10px]"
+        className="animate-slide-in absolute md:top-4 right-0 z-[4000] w-[400px] lg:h-[700px] md:h-[620px] max-md:h-full overflow-y-scroll bg-white p-5 rounded-[10px]"
       >
         <div className="flex items-center justify-between px-4">
           <p className="text-[20px]">Filter</p>
