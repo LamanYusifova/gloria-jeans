@@ -21,13 +21,12 @@ function Basket() {
     useEffect(() => {
             document.body.style.overflow = basketPopUp ? 'hidden' : 'auto';
             return () => {
-                document.body.style.overflow = 'auto'; // komponent bağlananda scrollu bərpa et
+                document.body.style.overflow = 'auto'; 
             };
         }, [basketPopUp]);
 
     const handleSecondClick = () => setBasketToggled(!basketToggled);
 
-    // Ümumi məbləğ
     const totalPrice = basketData.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
 
     const handleConfirm = () => {
@@ -35,12 +34,10 @@ function Basket() {
 
         setLoading(true);
 
-        // 1.5 saniyə sonra Confirmed göstərilsin
         setTimeout(() => {
             setLoading(false);
             setConfirmed(true);
 
-            // 1 saniyə sonra səbəti boşalt, amma popup açıq qalsın
             setTimeout(() => {
                 setBasketData([]);
                 setConfirmed(false);
@@ -56,7 +53,6 @@ function Basket() {
                     onClick={() => setBasketPopUp(false)}
                 >
                     <div className='animate-slide-in w-[472px] max-smm:w-full smm:right-[10px] h-[635px] lg:h-[715px] rounded-[20px] top-2 fixed'>
-                        {/* Top Tabs */}
                         <div className='flex mb-3 gap-3' onClick={e => e.stopPropagation()}>
                             <div
                                 onClick={handleSecondClick}
@@ -80,7 +76,6 @@ function Basket() {
                             </div>
                         </div>
 
-                        {/* Basket Content */}
                         {!basketToggled && (
                             <>
                                 <div
@@ -125,7 +120,6 @@ function Basket() {
                             </>
                         )}
 
-                        {/* Wishlist Content */}
                         {basketToggled && (
                             <div
                                 className='relative bg-white rounded-[20px] max-smm:w-full smm:right-[10px] h-[570px] lg:h-[650px] overflow-y-scroll'

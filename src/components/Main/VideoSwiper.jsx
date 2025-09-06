@@ -26,7 +26,6 @@ function VideoSwiper() {
 
   return (
     <div className="relative w-full">
-      {/* Loading Spinner */}
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center  z-10">
           <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin "></div>
@@ -36,10 +35,9 @@ function VideoSwiper() {
       <Swiper
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
-          swiper.autoplay.stop(); // İlk slide üçün autoplay dayandırılır
+          swiper.autoplay.stop(); 
         }}
         onSlideChange={() => {
-          // Əgər geri qayıdırlarsa və 1-ci slide aktivdirsə video yenidən oynadılır
           if (swiperRef.current.activeIndex === 0 && videoRef.current) {
             videoRef.current.play();
             swiperRef.current.autoplay.stop();
@@ -52,7 +50,6 @@ function VideoSwiper() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper videoswiper w-full"
       >
-        {/* 1-ci slide (video) */}
         <SwiperSlide className="w-full relative overflow-hidden">
           <video
             ref={videoRef}
@@ -64,7 +61,7 @@ function VideoSwiper() {
               height: '100%'
             }}
             autoPlay
-            onLoadedData={() => setLoading(false)} // Video hazır olduqda loading gizlənir
+            onLoadedData={() => setLoading(false)} 
             onEnded={() => {
               swiperRef.current.autoplay.start();
               swiperRef.current.slideNext();
@@ -74,14 +71,12 @@ function VideoSwiper() {
           </video>
         </SwiperSlide>
 
-        {/* Digər slidelar (mobil) */}
         {mobileData.map((item, i) => (
           <SwiperSlide className="md:hidden!" key={i}>
             <img src={item} alt="photo" />
           </SwiperSlide>
         ))}
 
-        {/* Digər slidelar (desktop) */}
         {desktopData.map((item, i) => (
           <SwiperSlide className="max-md:hidden!" key={i}>
             <img src={item} alt="photo" />

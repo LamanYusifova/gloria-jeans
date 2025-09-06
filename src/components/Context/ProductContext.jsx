@@ -5,15 +5,13 @@ const ProductContext = createContext();
 export function ProductProvider({ children }) {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // BÜTÜN sahələri boş massivlərlə başlayırıq (xətanın səbəbi bu idi)
   const [filters, setFilters] = useState({
-    categories: [],  // "Clothing", "Shoes", "Bags"
-    brands: [],      // "Balenciaga" və s.
-    sizes: [],       // "S", "M", "L", ...
-    colors: []       // "black", "white", ...
+    categories: [],  
+    brands: [],      
+    sizes: [],       
+    colors: []       
   });
 
-  // Checkbox/lenta dəyişəndə çağır
   const toggleFilter = (type, value) => {
     setFilters(prev => {
       const current = Array.isArray(prev[type]) ? prev[type] : [];

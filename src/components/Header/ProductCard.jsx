@@ -18,7 +18,6 @@ function ProductCard({ data, cancelClick }) {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(data?.Colors?.[0] || null);
 
-  // Sadə skeleton üçün state
   const [loading, setLoading] = useState(true);
 
   const isInWishlist = wishlistData.some(
@@ -66,7 +65,6 @@ function ProductCard({ data, cancelClick }) {
             >
               {data?.images?.map((url, i) => (
                 <SwiperSlide key={i} className='relative w-full h-full'>
-                  {/* Skeleton */}
                   {loading && (
                     <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg"></div>
                   )}
@@ -98,7 +96,6 @@ function ProductCard({ data, cancelClick }) {
           </div>
         </Link>
 
-        {/* Colors */}
         <div className='flex gap-2 w-full justify-end p-3'>
           {data?.Colors?.map((color, i) => (
             <div key={i} className='flex flex-col items-center'>

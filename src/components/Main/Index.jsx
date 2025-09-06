@@ -49,12 +49,12 @@ function Main() {
   ]
 
   const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true) // loading state
+  const [loading, setLoading] = useState(true) 
 
   useEffect(() => {
     getAllProducts().then(res => {
       setProducts(res)
-      setLoading(false) // data gələndə loading bitir
+      setLoading(false) 
     })
   }, [])
 

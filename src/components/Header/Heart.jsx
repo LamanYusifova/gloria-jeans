@@ -27,12 +27,10 @@ function Heart({ setHeartPopUp, heartPopUp,  }) {
 
         setLoading(true);
 
-        // 1.5 saniyə sonra Confirmed göstərilsin
         setTimeout(() => {
             setLoading(false);
             setConfirmed(true);
 
-            // 1 saniyə sonra səbəti boşalt, amma popup açıq qalsın
             setTimeout(() => {
                 setBasketData([]);
                 setConfirmed(false);

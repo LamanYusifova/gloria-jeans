@@ -19,16 +19,16 @@ function Details() {
   const nextRef = useRef(null)
   const [details, setDetails] = useState({})
   const [activeSize, setActiveSize] = useState(null)
-  const [selectedColor, setSelectedColor] = useState(null) // <- Yeni state
+  const [selectedColor, setSelectedColor] = useState(null) 
   const [sizeChart, setSizeChart] = useState(false)
-  const [buttonState, setButtonState] = useState('price') // price | loading | added
+  const [buttonState, setButtonState] = useState('price') 
 
   useEffect(() => {
     if (id) {
       getProdForDetails(id).then(res => {
         setDetails(res)
         setActiveSize(res.Size?.[0])
-        setSelectedColor(res.Colors?.[0] || null) // İlk rəng default
+        setSelectedColor(res.Colors?.[0] || null) 
       })
     }
   }, [id])
@@ -45,7 +45,7 @@ function Details() {
       addToBasket({
         ...details,
         selectedSize: activeSize,
-        selectedColor, // <- seçilmiş rəng basket-ə əlavə olunur
+        selectedColor, 
         quantity: 1
       })
       setBasketPopUp(true)
@@ -65,7 +65,6 @@ function Details() {
   return (
     <>
       <div className='grid grid-cols-2 max-md:grid-cols-1 gap-6 pt-20 px-4 md:px-20'>
-        {/* Swiper */}
         <div className='relative'>
           <Swiper
             modules={[Navigation]}
@@ -105,14 +104,12 @@ function Details() {
           </button>
         </div>
 
-        {/* Product Info */}
         <div className='flex flex-col gap-6'>
           <div>
             <h1 className='font-bold uppercase text-xl sm:text-2xl'>{details.name}</h1>
             <p className='font-bold text-lg sm:text-xl'>{details.price}$</p>
           </div>
 
-          {/* Color Selection */}
           <div>
             {details?.Colors?.length > 0 ? 
               <>
@@ -126,7 +123,7 @@ function Details() {
                     style={{ backgroundColor: color }}
                   ></button>
                   {selectedColor === color && (
-                    <div className="w-[12px] h-[2px] bg-black mt-1 rounded-full"></div> // Alt xətt
+                    <div className="w-[12px] h-[2px] bg-black mt-1 rounded-full"></div> 
                   )}
                 </div>
               ))}
@@ -135,7 +132,6 @@ function Details() {
             }
           </div>
 
-          {/* Size Selection */}
           <div className='flex flex-col gap-3'>
             <p className='text-gray-600 uppercase mb-2'>Choose Size:</p>
             <div className='flex gap-2'>
@@ -152,7 +148,6 @@ function Details() {
             <p onClick={() => setSizeChart(true)} className='underline text-sm mt-2 cursor-pointer'>Size Chart /</p>
           </div>
 
-          {/* Actions */}
           <div className='flex md:gap-4 max-md:gap-2 items-center'>
             <button
               onClick={handleWishlistClick}
@@ -177,7 +172,6 @@ function Details() {
             </button>
           </div>
 
-          {/* Description */}
           <div>
             <p className='font-semibold mb-1'>Description:</p>
             <p className='text-gray-700'>{details.description}</p>
@@ -185,7 +179,6 @@ function Details() {
         </div>
       </div>
 
-      {/* SizeChart */}
       {sizeChart && <SizeChart onClose={() => setSizeChart(false)} />}
       {basketPopUp && <Basket basketPopUp={basketPopUp} setBasketPopUp={setBasketPopUp} />}
     </>

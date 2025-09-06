@@ -19,8 +19,6 @@ function AccordionItemSearch({setSearchBurgerMenu, searchBurgerMenu, openSubCate
 
     return (
         <div className="mt-8">
-            {console.log(data)
-            }
             {data?.slice(0, 4).map((item, index) => (
                 <div key={index} className="p-4">
                     <h2

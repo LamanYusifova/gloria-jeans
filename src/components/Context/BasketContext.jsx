@@ -18,7 +18,6 @@ export function BasketProvider({ children }) {
 
   const addToBasket = (item) => {
     setBasketData(prev => {
-      // Eyni məhsulu tap (id + selectedSize + selectedColor)
       const existingIndex = prev.findIndex(
         x =>
           x.id === item.id &&
@@ -27,12 +26,10 @@ export function BasketProvider({ children }) {
       );
 
       if (existingIndex !== -1) {
-        // Mövcud məhsul varsa quantity artırsın
         const newBasket = [...prev];
         newBasket[existingIndex].quantity += 1;
         return newBasket;
       } else {
-        // Yeni məhsul əlavə olunsun
         return [...prev, { ...item, quantity: 1 }];
       }
     });

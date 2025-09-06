@@ -14,7 +14,6 @@ function ShoppingCart() {
 
   return (
     <div>
-      {/* Top bar with total products and delete all */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200">
         <span>
           {basketData.reduce((acc, item) => acc + item.quantity, 0)}{" "}
@@ -23,7 +22,6 @@ function ShoppingCart() {
         <button className="cursor-pointer" onClick={() => setBasketData([])}>Delete All</button>
       </div>
 
-      {/* Basket items */}
       {basketData.map((item, index) => (
         <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}-${index}`} className="flex p-4 border-b border-gray-200">
           <div className="w-1/3">
@@ -32,13 +30,11 @@ function ShoppingCart() {
           <div className="w-2/3 pl-3 flex flex-col justify-between">
             <p>{item.name}</p>
 
-            {/* Seçilmiş rəng */}
             <div className="flex items-center gap-2 my-1">
               <span>Color:</span>
               <div className="w-5 h-5 rounded-full border" style={{ backgroundColor: item.selectedColor }}></div>
             </div>
 
-            {/* Seçilmiş ölçü */}
             <button className="border border-gray-300 w-20 my-2">{item.selectedSize}</button>
 
             <div className="flex justify-between items-center">

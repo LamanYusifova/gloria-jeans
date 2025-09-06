@@ -7,7 +7,6 @@ export default function BasketSvg() {
 
 
     const login1Click = () => {
-        // Yalnız varsa çağır
         if (setEmojiPopUp) {
             setEmojiPopUp(true);
         }
@@ -20,7 +19,6 @@ export default function BasketSvg() {
                 <p>Happy shopping!</p>
             </div>
             <div className='flex p-5 mt-6'>
-                {/* SVG olduğu kimi saxlanır */}
                 <svg width="389px" height="283px" viewBox="0 0 424 274" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="m111.439 136.905 15.577 16.364-5.192 21.963 134.134 14.211m-144.519-52.538 10.385-134.36 201.201 7.322M111.439 136.905l125.913 6.029m18.606 46.509-22.5-31.006 3.894-15.503m18.606 46.509L367.592 64.558l-49.327-7.752 4.76-46.94m-85.673 133.068L323.025 9.867" stroke="#000" strokeWidth="2.2" strokeLinejoin="round"></path>
                     <path d="M202.042 126.353S228.606 73.7 170.26 42.867C85.363-1.998 5.657 26.738 18.94 64.213c13.281 37.474 73.525.474 116.217 15.18 42.692 14.704 27.513 42.217 27.513 42.217" stroke="#000" strokeWidth="2.2"></path>

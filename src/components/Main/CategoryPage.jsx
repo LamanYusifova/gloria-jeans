@@ -5,11 +5,11 @@ import { Link, useParams } from 'react-router'
 import { getData, getProdBySubCatId, getSubcategoriesById } from '../../services'
 import ProductCard from '../Header/ProductCard'
 import Filter from './Filter'
-import { useProducts } from '../Context/ProductContext' // <-- context
+import { useProducts } from '../Context/ProductContext' 
 
 function CategoryPage() {
   const { id } = useParams()
-  const { filters } = useProducts() // <-- filters
+  const { filters } = useProducts() 
   const [count, setCount] = useState(8)
   const [data, setData] = useState([])
   const [shuffledData, setShuffledData] = useState([])
@@ -66,7 +66,6 @@ function CategoryPage() {
     return shuffled
   }
 
-  // -------- FILTER (təhlükəsiz)
   const selCats = Array.isArray(filters?.categories) ? filters.categories : []
   const selBrands = Array.isArray(filters?.brands) ? filters.brands : []
   const selSizes = Array.isArray(filters?.sizes) ? filters.sizes : []
@@ -75,32 +74,28 @@ function CategoryPage() {
   const normalized = (v) => String(v || '').toLowerCase()
 
   const filteredProducts = shuffledData.filter(product => {
-    // Category/Subcategory (subcategory adları: Clothing, Shoes, Bags)
     const byCategory =
       selCats.length === 0 ||
       selCats.map(normalized).includes(normalized(product?.subcategory?.name)) ||
       selCats.map(normalized).includes(normalized(product?.category?.name))
 
-    // Brand
     const byBrand =
       selBrands.length === 0 ||
       selBrands.map(normalized).includes(normalized(product?.Brands?.name))
 
-    // Size
     const bySize =
       selSizes.length === 0 ||
       (Array.isArray(product?.Size) && product.Size.some(s => selSizes.map(normalized).includes(normalized(s))))
 
-    // Color
     const byColor =
       selColors.length === 0 ||
       (Array.isArray(product?.Colors) && product.Colors.some(c => selColors.map(normalized).includes(normalized(c))))
 
     return byCategory && byBrand && bySize && byColor
   })
-  // --------
+  
 
-  const visible = filteredProducts // layoutun qalanı toxunulmur
+  const visible = filteredProducts 
 
   return (
     <>

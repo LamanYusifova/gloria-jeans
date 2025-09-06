@@ -6,7 +6,6 @@ import Basket from "./components/Header/Basket";
 import { useState } from "react";
 import { BasketProvider } from "./components/Context/BasketContext";
 import { WishlistProvider } from "./components/Context/WishlistContext";
-import AccordionFilter from "./components/Main/AccordionItem";
 import { ProductProvider } from "./components/Context/ProductContext";
 
 function App() {

@@ -8,7 +8,6 @@ function Wishlist() {
   const { wishlistData, removeFromWishlist, setBasketPopUp } = useContext(WishlistContext);
   const { basketPopUp, addToBasket } = useContext(BasketContext);
 
-  // State-lər
   const [selectedSizeMap, setSelectedSizeMap] = useState({});
   const [selectedColorMap, setSelectedColorMap] = useState({});
   const [buttonStateMap, setButtonStateMap] = useState({});
@@ -19,7 +18,7 @@ function Wishlist() {
     const initialColorState = {};
     wishlistData.forEach(item => {
       initialButtonState[item.id] = 'price';
-      initialColorState[item.id] = item.Colors?.[0] || null; // default rəng
+      initialColorState[item.id] = item.Colors?.[0] || null; 
     });
     setButtonStateMap(initialButtonState);
     setSelectedColorMap(initialColorState);
@@ -57,7 +56,6 @@ function Wishlist() {
     <div className='grid grid-cols-2 p-3 gap-3'>
       {wishlistData.map((item) => (
         <div key={item.id} className='relative flex flex-col gap-3 justify-between border border-gray-300 rounded-[10px] p-3'>
-          {/* Şəkil */}
           <div className='relative'>
             <img src={item.images?.[0]} alt={item.name} className="w-full h-auto" />
             {item.Size && showSizesMap[item.id] && (
@@ -65,7 +63,6 @@ function Wishlist() {
             )}
           </div>
 
-          {/* Rənglər */}
           {item.Colors && (
             <div className='flex gap-2 w-full justify-end p-3'>
               {item.Colors.map((color, i) => (
@@ -85,13 +82,12 @@ function Wishlist() {
 
           <p>{item.name}</p>
 
-          {/* Price / Add button */}
           <button
             onClick={() => handlePriceClick(item.id)}
             className="cursor-pointer relative flex items-center justify-center w-[40%] h-10 overflow-hidden border rounded-[10px] hover:bg-black hover:text-white transition-colors"
           >
             <span
-              className={`absolute w-full text-black h-full flex items-center justify-center transition-transform duration-300
+              className={`absolute w-full hover:text-white text-black h-full flex items-center justify-center transition-transform duration-300
               ${buttonStateMap[item.id] === 'price' ? 'translate-y-0' : '-translate-y-full'}`}
             >
               {item.price} $
@@ -110,7 +106,6 @@ function Wishlist() {
             </span>
           </button>
 
-          {/* Remove (Heart) */}
           <div
             className='absolute right-4 top-2 cursor-pointer'
             onClick={() => removeFromWishlist(item.id, selectedSizeMap[item.id])}

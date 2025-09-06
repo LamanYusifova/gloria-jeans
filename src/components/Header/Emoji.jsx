@@ -19,13 +19,6 @@ function Emoji({ setEmojiPopUp, emojiPopUp }) {
     const validateEmail = (value) => {
         setEmail(value);
 
-        // if (value && !/\.(com|ru)$/i.test(value)) {
-        //     setError(
-        //         "Please check that the email address you entered is correct. Only those ending in .ru or .com are supported."
-        //     );
-        //     return;
-        // }
-
         if (!value) {
             setError("");
             return;

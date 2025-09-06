@@ -5,7 +5,7 @@ import { Link, useParams, useLocation } from 'react-router'
 import { getData, getProdForCategory } from '../../services'
 import ProductCard from '../Header/ProductCard'
 import Filter from './Filter'
-import { useProducts } from '../Context/ProductContext' // <-- Əlavə olundu
+import { useProducts } from '../Context/ProductContext' 
 
 function SubCategory() {
     const { id } = useParams()
@@ -13,7 +13,7 @@ function SubCategory() {
     const params = new URLSearchParams(location.search)
     const slug = params.get("slug")
 
-    const { filters } = useProducts() // <-- Əlavə olundu
+    const { filters } = useProducts() 
 
     const [data, setData] = useState([])
     const [name1, setName1] = useState('')
@@ -24,14 +24,12 @@ function SubCategory() {
 
     const toggledFilter1 = () => setFilterPopUp1(!filterPopUp1)
 
-    // Bütün datanı alırıq (breadcrumb üçün)
     useEffect(() => {
         getData().then(res => {
             setData(res)
         })
     }, [])
 
-    // Subcategory məhsullarını alırıq
     useEffect(() => {
         getProdForCategory(id).then(res => {
             if (res?.data) {
@@ -41,7 +39,6 @@ function SubCategory() {
     }, [id])
     { subCategory }
 
-    // Breadcrumb üçün category məlumatını tapırıq
     useEffect(() => {
         data.forEach(item => {
             item.Subcategory?.forEach(sub => {
@@ -54,7 +51,6 @@ function SubCategory() {
         })
     }, [data, id])
 
-    // -------- FILTER məntiqi
     const selBrands = Array.isArray(filters?.brands) ? filters.brands : []
     const selSizes = Array.isArray(filters?.sizes) ? filters.sizes : []
     const selColors = Array.isArray(filters?.colors) ? filters.colors : []
@@ -62,40 +58,33 @@ function SubCategory() {
     const normalized = v => String(v || '').toLowerCase()
 
     const filteredProducts = subCategory.filter(product => {
-        // Brand
         const byBrand =
             selBrands.length === 0 ||
             selBrands.map(normalized).includes(normalized(product?.Brands?.name))
 
-        // Size
         const bySize =
             selSizes.length === 0 ||
             (Array.isArray(product?.Size) && product.Size.some(s => selSizes.map(normalized).includes(normalized(s))))
 
-        // Color
         const byColor =
             selColors.length === 0 ||
             (Array.isArray(product?.Colors) && product.Colors.some(c => selColors.map(normalized).includes(normalized(c))))
 
         return byBrand && bySize && byColor
     })
-    // --------
 
     return (
         <>
-            {/* Breadcrumb */}
             <div className='pt-[80px] pl-[10px] flex items-center gap-4 text-gray-600'>
                 <Link to={"/"}><p className='flex items-center'><RxDotFilled /> Home</p></Link>
                 <Link to={`/category/${categoryId}`}><p className='flex items-center'><RxDotFilled />{categoryName}</p></Link>
                 <p className='flex items-center'><RxDotFilled />{name1}</p>
             </div>
 
-            {/* Başlıq */}
             <h2 className='flex items-center justify-center font-bold text-[26px] p-4'>
                 {name1}
             </h2>
 
-            {/* Filter Button */}
             <div className='flex items-center justify-end'>
                 <div
                     onClick={toggledFilter1}
@@ -106,7 +95,6 @@ function SubCategory() {
                 </div>
             </div>
 
-            {/* Məhsullar */}
             <div className='p-10'>
                 {filteredProducts?.length > 0 ? (
                     <div className='product grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full'>
@@ -130,12 +118,11 @@ function SubCategory() {
                 )}
             </div>
 
-            {/* Filter PopUp */}
             {filterPopUp1 && (
                 <Filter
                     filterPopUp1={filterPopUp1}
                     setFilterPopUp1={setFilterPopUp1}
-                    hideCategory // <-- Category filterini gizlə
+                    hideCategory 
                 />
             )}
         </>

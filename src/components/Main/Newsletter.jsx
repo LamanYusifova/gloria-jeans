@@ -8,7 +8,6 @@ function Newsletter() {
     const validateEmail = (value) => {
         setEmail(value);
 
-        // ✅ Email düzgün formatda və sonunda .com, .ru və .s olmalıdır
         const regex = /^[^\s@]+@[^\s@]+\.(com|ru|s)$/i;
 
         setIsValidEmail(regex.test(value));

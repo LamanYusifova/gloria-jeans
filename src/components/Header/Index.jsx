@@ -130,7 +130,6 @@ function Header() {
 
 
 
-              {/* Right icons */}
               <div className="flex items-center justify-between gap-4">
                 <p onClick={toggleDiv} className={`${isProductPage || bg ? "text-black" : 'text-white'} cursor-pointer max-lg:rounded-[10px] mx-5 max-lg:px-4 max-lg:border`}>
                   Support service
@@ -168,14 +167,12 @@ function Header() {
             </div>
           </nav>
 
-          {/* Countries dropdown */}
           {isOpen && (
             <SupportServices />
           )}
         </div>
       </header>
 
-      {/* Fixed top right icons */}
       <div className={`fixed top-[8px] right-[5px] z-[800] w-fit cursor-pointer flex gap-3 items-center px-3 py-1 rounded-[50px] text-[20px] max-lg:hidden transition-all duration-300 ${!icons ? 'w-[60px]' : ''}`}>
         {icons && (
           <div className="bg-white rounded-[30px] flex items-center justify-between p-4 gap-3 cursor-pointer">
@@ -195,7 +192,6 @@ function Header() {
         )}
       </div>
 
-      {/* Bottom mobile nav */}
       <div className="bg-white w-full h-[80px] fixed z-[9000] bottom-0 lg:hidden flex items-center justify-around text-[#a6a6a6]">
         <div className="flex flex-col items-center gap-1 cursor-pointer">
           <Link to={"/"}>
@@ -221,7 +217,6 @@ function Header() {
         </div>
       </div>
 
-      {/* Popups */}
       {bg && <Search setBg={setBg} />}
       {emojiPopUp && <Emoji setEmojiPopUp={setEmojiPopUp} emojiPopUp={emojiPopUp} />}
       {heartPopUp && <Heart setHeartPopUp={setHeartPopUp} heartPopUp={heartPopUp} setEmojiPopUp={setEmojiPopUp} />}

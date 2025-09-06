@@ -11,7 +11,7 @@ import AccordionItemSearch from './AccordionItemSearch'
 function Search({ bg, setBg, cardImage }) {
   const [cancel, setCancel] = useState(false)
   const [data, setData] = useState([])
-  const [products, setProducts] = useState([]) // search nəticələri
+  const [products, setProducts] = useState([]) 
   const {searchQuery, setSearchQuery } = useProducts()
   const [showDropdown, setShowDropdown] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -32,7 +32,7 @@ function Search({ bg, setBg, cardImage }) {
         .then(res => setProducts(res))
         .catch(() => setProducts([]))
         .finally(() => setLoading(false))
-    }, 300) // 300ms debounce
+    }, 300) 
     return () => clearTimeout(handler)
   }, [searchQuery])
 
@@ -51,7 +51,6 @@ function Search({ bg, setBg, cardImage }) {
     setBg(false)
   }
 
-  // Filter: name və subcategory-ə görə, təkrarsız
   const filteredResults = useMemo(() => {
     if (!products || products.length === 0) return []
 
@@ -59,7 +58,6 @@ function Search({ bg, setBg, cardImage }) {
     const results = []
 
     products.forEach(product => {
-      // Məhsulun adı
       if (
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
         !seen.has(product.name)
@@ -68,14 +66,13 @@ function Search({ bg, setBg, cardImage }) {
         seen.add(product.name)
       }
 
-      // Məhsulun subcategoryləri
       if (product.Subcategory) {
         product.Subcategory.forEach(sub => {
           if (
             sub.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
             !seen.has(sub.name)
           ) {
-            results.push({ ...product, name: sub.name }) // subcategory adı ilə göstər
+            results.push({ ...product, name: sub.name }) 
             seen.add(sub.name)
           }
         })
@@ -96,7 +93,6 @@ function Search({ bg, setBg, cardImage }) {
             onClick={(e) => e.stopPropagation()}
             className="animate-slide-search bg-white h-[680px] lg:h-full w-full pt-6 overflow-scroll"
           >
-            {/* Mobile top categories */}
             <ul className="lg:hidden flex gap-3 items-center justify-center mt-6 max-smm1:overflow-x-scroll">
               <RxHamburgerMenu onClick={openSubCategories} className='text-[30px]' />
               {data.slice(0, 4).map((item, i) => (
@@ -111,7 +107,6 @@ function Search({ bg, setBg, cardImage }) {
               ))}
             </ul>
 
-            {/* Search input */}
             <div className="flex items-center justify-center gap-3 h-[80px] w-full">
               <span className="translate-x-12 text-[24px]"><IoMdSearch /></span>
               <input
@@ -127,7 +122,6 @@ function Search({ bg, setBg, cardImage }) {
             </div>
 
             <div className="flex flex-col lg:flex-row gap-4 bg-white lg:gap-6 px-2 sm:px-4 lg:px-12 pb-4">
-              {/* Left panel */}
               <div className="w-full lg:w-[280px] xl:w-[300px] flex-shrink-0 relative">
                 <ul className="space-y-1 sm:space-y-2 max-h-[300px] lg:max-h-none overflow-y-auto lg:overflow-visible">
                   {showDropdown && (
@@ -157,7 +151,6 @@ function Search({ bg, setBg, cardImage }) {
                 </ul>
               </div>
 
-              {/* Right panel */}
               <div className="flex-1 min-w-0 max-lg:hidden">
                 <div className="product grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                   {filteredResults?.slice(0, 3).map(product => (
